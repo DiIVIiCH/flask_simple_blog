@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}{{super()}} - Register {% endblock %}
+{% block cont %}
+				<div class="row">
+					<div class="col-xs-12">
+						<form action="" method="POST" role="form">
+								{{form.hidden_tag()}}
+								{{wtf.form_field(form.login)}}
+								{{wtf.form_field(form.password)}} 
+								{{wtf.form_field(form.email)}}					
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div>
+				</div>
+{% endblock %}

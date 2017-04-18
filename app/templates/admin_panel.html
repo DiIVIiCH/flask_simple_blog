@@ -1,0 +1,8 @@
+		
+				<div class="row ">
+					<div class=" col-xs-12 admin-panel">
+						<a role="button" class="btn btn-default" href="/editor">Добавить пост</a>
+						<a role="button" class="btn btn-default" {% if post %}href="/editor/?post={{post.id}}"{% endif %}>Редактировать пост</a>
+						<a role="button" class="btn btn-default" {% if post %}href="/delete_post/?post={{post.id}}"{% endif %}>Удалить пост</a>
+					</div>			
+				</div>

@@ -1,0 +1,74 @@
+{% extends "bootstrap/base.html" %}
+	
+	{% block title %}FWProcrastination {% endblock %}
+	
+	{% block metas %}
+	{{ super() }}
+	<meta charset="utf-8">
+	{% endblock %}
+	{% block styles %}
+	{{super()}}
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+	{% endblock %}
+
+	
+
+{% block content %}
+	<div class="container-fluid">	
+		<div class="row">
+			<div class="col-xs-offset-1 col-xs-10 col-md-offset-2 col-md-8">
+				{% include 'navbar.html' %}
+
+				{% if current_user.is_authenticated %}
+				{% include 'admin_panel.html' %}		
+				{% endif %}
+
+				{% block cont %}
+				{% endblock %}
+				
+				{%include 'footer.html' %}
+		
+			</div>
+		</div>
+	</div>
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+		<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-body text-center">
+					<div class="modal-body_font-size modal-body_text-color">
+						<p>Вы находитесь на сайте уже 20 минут.</p>
+						<p>Может пора приняться за работу?</p>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" style="width:100%">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+ {% endblock %}
+
+	{% block scripts%}
+	{{ super() }}
+	<script type="text/javascript">
+		$(document).ready(function () {
+		    $(".pagination").rPage();
+		});
+	</script>
+	<script>
+		$('body').activity({
+			'achieveTime': 1200
+			,'testPeriod': 60
+			,useMultiMode: 1
+			,callBack: function (e) {
+				$('#myModal').modal('show');
+			}
+		});
+
+	</script>
+	<script src="{{ url_for('static', filename='js/responsive-paginate.js')}}"></script>
+	<script src="{{ url_for('static', filename='js/jquery.activity.min.js')}}"></script>	
+	
+
+	{% endblock %}

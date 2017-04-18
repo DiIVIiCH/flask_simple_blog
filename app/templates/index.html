@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block cont %}
+				{% for post in posts.items %}
+				<div class="row post">
+					<div class="col-xs-12 col-sm-8 col-md-9 col-lg-10 post__info post__info_left">
+						<h2>
+							<a class="ref ref_black" href="/?post={{post.id}}">{{post.title}}</a>
+						</h2>
+					</div>
+					<div class="hidden-xs col-sm-4 col-md-3 col-lg-2 post__info post__info_right">
+						<h2>{{post.date.strftime('%d-%m-%Y')}}</h2>					
+					</div>
+					<div class="post_hide">
+						<div class="col-xs-12">
+							<hr>
+							<div class="post__text">
+							{{post.preview}}
+							<br><a href="{{url_for('.index', post=post.id, _external=True)}}">Читать далее</a>
+							</div>
+							<hr>
+						</div>
+						<div class="col-xs-7 post__info post__info_style post__info_left post__info_font-size">
+							ТЕГИ:|{% for t in post.tags %}<a class="ref ref_grey" href="{{url_for('.index', tag=t, _external=True)}}">{{t}}</a>|
+							  {% endfor %}
+						</div>
+						<div class="col-xs-5 post__info post__info_style post__info_right post__info_font-size">
+							<span class="disqus-comment-count" data-disqus-url="{{url_for('.index', post=post.id, _external=True)}}"></span>
+						</div>
+					</div>
+				</div>
+				{% endfor %}	
+				 <div class="row text-center">
+					{% from "bootstrap/pagination.html" import render_pagination %}
+					{{render_pagination(posts, size='lg')}}
+		       	</div>
+{% endblock %}
+
+{% block scripts %}
+{{super()}}
+<script id="dsq-count-scr" src="//{{ config.BLOGGING_DISQUS_SITENAME }}.disqus.com/count.js" async></script>
+{% endblock %}
+

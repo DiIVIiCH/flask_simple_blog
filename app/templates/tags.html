@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}{{super()}} - All tags {% endblock %}
+{% block cont %}
+
+				<div class="row post">
+					<div class='text-center'>
+						{% for t in tags%}
+							<div>
+								<a class="ref ref_black" href="{{url_for('.index', tag=t[0], _external=True)}}">{{t[0]}} ({{t[1]}})</a>
+							</div>
+						{% endfor %}
+					</div>
+				</div>		
+
+{% endblock %}

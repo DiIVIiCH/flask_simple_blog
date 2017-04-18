@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}{{super()}} - Editor {% endblock %}
+{%block styles %}{{super()}} <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown/2.8.0/css/bootstrap-markdown.min.css"
+      rel="stylesheet"/>  {% endblock %}
+{% block cont %}
+	
+		<form class="form-horizontal" form action="" method="POST" role="form">
+			{{form.hidden_tag()}}
+			<input id="title" name="title" type="text" value="{{post.title if post.title is not none}}">
+			<textarea data-provide="markdown" id="post_preview" name="post_preview" rows="5">{{post.preview if post.review is not none}}</textarea>
+			<textarea data-provide="markdown" id="post_body" name="post_body" rows="16">{{post.full if post.full is not none}}</textarea>
+			<input id="tags" name="tags" type="text" value="{% for tag in post.tags%}{{tag}}{%if not loop.last%}, {%endif%}{% endfor %}">
+
+			<p><button class="btn btn-primary" type="submit">Save</button></p>
+		</form> 
+
+{% endblock %}
+
+{% block scripts%}
+{{super()}}
+	 <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown/2.8.0/js/bootstrap-markdown.min.js">
+    </script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/markdown.js/0.5.0/markdown.min.js">
+    </script>
+{% endblock %}

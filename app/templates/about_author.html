@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}{{super()}} - About blog {% endblock %}
+{%block styles %}{{super()}} <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown/2.8.0/css/bootstrap-markdown.min.css"
+      rel="stylesheet"/>  {% endblock %}
+{% block cont %}
+				<div class="row  post">
+					<div class="col-xs-12">
+						<h2>
+							Об авторе
+						</h2>
+					</div>
+					<div class="col-xs-12">
+						<div class="post__text">
+							{{about.body|markdown if about.body is not none}}
+							</p>
+						</div>
+					</div>					
+				</div>
+				{% if current_user.is_authenticated %}
+				<div class="row">	
+					<div class="panel-group" id="accordion">
+				        <div class="panel panel-default">
+				            <div class="panel-heading">
+				                <h4 class="panel-title">
+				                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Редактировать описание</a>
+				                </h4>
+				            </div>
+				            <div id="collapseOne" class="panel-collapse collapse">
+				                <div class="panel-body">
+				                    <form class="form-horizontal" form action="" method="POST" role="form">
+										{{form.hidden_tag()}}					
+										<textarea data-provide="markdown" id="body" name="body" rows="16">{{about.body if about.body is not none}}</textarea>
+										<p><button class="btn btn-primary" type="submit">Save</button></p>
+									</form> 
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+				{% endif %}
+
+				
+{% endblock %}
+
+{% block scripts%}
+{{super()}}
+	 <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown/2.8.0/js/bootstrap-markdown.min.js">
+    </script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/markdown.js/0.5.0/markdown.min.js">
+    </script>
+{% endblock %}
