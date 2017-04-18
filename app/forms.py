@@ -15,10 +15,10 @@ class LoginForm(FlaskForm):
 
 
 class PostForm(FlaskForm):
-	title = TextField('Title',validators =[Required(), Length(max=150)])
-	preview = TextAreaField('Preview',validators =[Required(), Length(max=500)])
-	full = TextAreaField('Full',validators =[Required()])
-	tags = TextField('Tags',validators =[Required()])
+	title = TextField('title',validators =[Required(), Length(max=150)])
+	preview = TextAreaField('preview',validators =[Required(), Length(max=500)])
+	full = TextAreaField('full',validators =[Required()])
+	tags = TextField('tags',validators =[Required()])
 
 class AboutForm(FlaskForm):
 	body = TextAreaField('body',validators =[Required()])

@@ -26,11 +26,11 @@ class Config(object):
         f.close()
 
     # URI используемая для подключения к базе данных
-    pg_db_username = 'dima'
+    pg_db_username = 'user'
     pg_db_password = 'password'
-    pg_db_name = 'simple_blog'
+    pg_db_name = 'blog'
     pg_db_hostname = 'localhost'
-    BLOGGING_DISQUS_SITENAME = 'fwprocrastination'
+    BLOGGING_DISQUS_SITENAME = 'test'
     #SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://'+pg_db_username+':'+pg_db_password+'@'+pg_db_hostname+'/'+pg_db_name
     SQLALCHEMY_TRACK_MODIFICATIONS = False
